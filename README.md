@@ -37,21 +37,21 @@ git clone <your-repo-link>
 cd financial-document-analyzer-debug
 
 
-2. Create Virtual Environment
+### 2. Create Virtual Environment
 ```bash
 python -m venv venv
 venv\Scripts\activate
 
-3. Install Dependencies
+### 3. Install Dependencies
 ```bash
 pip install -r requirements.txt
 
-4. Create Environment File
+### 4. Create Environment File
 Create a .env file in the root directory:
 ```bash
 OPENAI_API_KEY=your_openai_api_key
 
-5. Run the application
+### 5. Run the application
 ```bash
 uvicorn main:app --port 8001
 
