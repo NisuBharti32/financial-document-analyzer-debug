@@ -1,38 +1,78 @@
-# Financial Document Analyzer - Debug Assignment
+# Financial Document Analyzer (Debugged Version)
 
-## Project Overview
-A comprehensive financial document analysis system that processes corporate reports, financial statements, and investment documents using AI-powered analysis agents.
+## Overview
 
-## Getting Started
+This project is a Financial Document Analyzer built using FastAPI and CrewAI.  
+It processes uploaded financial PDF documents and performs:
 
-### Install Required Libraries
-```sh
-pip install -r requirement.txt
-```
+- Financial analysis  
+- Investment recommendations  
+- Risk assessment  
+- Document verification  
 
-### Sample Document
-The system analyzes financial documents like Tesla's Q2 2025 financial update.
+This repository contains the debugged and fixed version of the original buggy codebase.
 
-**To add Tesla's financial document:**
-1. Download the Tesla Q2 2025 update from: https://www.tesla.com/sites/default/files/downloads/TSLA-Q2-2025-Update.pdf
-2. Save it as `data/sample.pdf` in the project directory
-3. Or upload any financial PDF through the API endpoint
+---
 
-**Note:** Current `data/sample.pdf` is a placeholder - replace with actual Tesla financial document for proper testing.
+## Bugs Identified and Fixed
 
-# You're All Not Set!
-🐛 **Debug Mode Activated!** The project has bugs waiting to be squashed - your mission is to fix them and bring it to life.
+1. Incorrect Crew task configuration (functions passed instead of Task objects).
+2. Invalid tool imports and decorator usage.
+3. Model configuration error (`gpt-4-turbo` not accessible).
+4. Missing environment variable handling for `OPENAI_API_KEY`.
+5. Dependency conflicts between Pydantic v1 and v2.
+6. Improper file handling and cleanup in API.
+7. Incorrect project structure causing import errors.
 
-## Debugging Instructions
+All issues were resolved to ensure proper API execution and stable CrewAI workflow.
 
-1. **Identify the Bug**: Carefully read the code in each file and understand the expected behavior. There is a bug in each line of code. So be careful.
-2. **Fix the Bug**: Implement the necessary changes to fix the bug.
-3. **Test the Fix**: Run the project and verify that the bug is resolved.
-4. **Repeat**: Continue this process until all bugs are fixed.
+---
 
-## Expected Features
-- Upload financial documents (PDF format)
-- AI-powered financial analysis
-- Investment recommendations
-- Risk assessment
-- Market insights
+## Setup Instructions
+
+### 1. Clone Repository
+
+```bash
+git clone <your-repo-link>
+cd financial-document-analyzer-debug
+
+
+2. Create Virtual Environment
+```bash
+python -m venv venv
+venv\Scripts\activate
+
+3. Install Dependencies
+```bash
+pip install -r requirements.txt
+
+4. Create Environment File
+Create a .env file in the root directory:
+```bash
+OPENAI_API_KEY=your_openai_api_key
+
+5. Run the application
+```bash
+uvicorn main:app --port 8001
+
+Open in browser:
+```bash
+http://127.0.0.1:8001/docs
+
+API Endpoints
+GET /
+Health check endpoint.
+POST /analyze
+Upload a financial PDF and provide a query for analysis.
+
+Known Limitation
+
+If the OpenAI API returns a 429 insufficient_quota error, it indicates billing or quota limitations on the API key.
+The system works correctly with a valid API key that has available quota.
+
+Tech Stack
+FastAPI
+CrewAI
+LangChain
+PyPDFLoader
+OpenAI API
